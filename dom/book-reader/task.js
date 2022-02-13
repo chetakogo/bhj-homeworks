@@ -12,39 +12,14 @@ let x = element.getAttribute('data-size')
         console.log( x)
         if (x === 'small') {
             content.classList.add('book_fs-small')
-        }
-        if (x === 'big') {
+            content.classList.remove('book_fs-big')
+        } else if (x === 'big') {
             content.classList.add('book_fs-big')
+            content.classList.remove('book_fs-small')
+        } else {
+            content.classList.remove('book_fs-small')
+            content.classList.remove('book_fs-big')
         }
     })
 
 })
-
-// function change () {
-//     let x =  button.findIndex( (elem) => {
-//         return elem.classList.contains('font-size_active')
-//     })
-//     button[x].classList.remove('font-size_active')
-//     button.classList.toggle('font-size_active')
-//
-// }
-//
-// small.addEventListener('click', (elem) => {
-//     small.classList.add('font-size_active')
-//     book.classList.add('book_fs-small')
-//     elem.preventDefault()
-//     change()
-//
-//
-//
-// })
-//
-// big.addEventListener('click', (elem) => {
-//     big.classList.add('font-size_active')
-//     book.classList.add('book_fs-big')
-//     elem.preventDefault()
-//     change()
-//
-//
-//
-// })
