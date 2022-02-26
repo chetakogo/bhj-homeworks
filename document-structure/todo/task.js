@@ -1,16 +1,24 @@
 let input = document.querySelector('.tasks__input');
 let list = document.getElementById('tasks__list');
-let rem = Array.from(document.querySelectorAll('.task__remove'))
+
+let button = document.querySelector('.tasks__add')
 
 
+button.addEventListener('click', (event) => {
+    event.preventDefault()
+    create()
+    input.value = ''
+})
 
-console.log(list)
-console.log(input.value)
 
 
 
 document.addEventListener('keydown', (e) => {
-    if (input.value !== '' && e.key == 'Enter') {
+
+
+
+    if (input.value.trim().length !== 0 && e.key === 'Enter') {
+
         console.log(input.value)
         e.preventDefault()
         create()
@@ -27,14 +35,21 @@ function create() {
     let task = list.lastChild
     let tasks = task.firstChild
     tasks.insertAdjacentHTML("afterbegin", input.value)
+
+
+    let rem = document.querySelectorAll('.task__remove')
+    console.log(rem)
+
+    for (let elem of rem) {
+
+        elem.addEventListener('click', (event) => {
+            event.preventDefault()
+            event.target.closest('.task').remove()
+        })
+    }
 }
 
-for (let elem of rem) {
-    elem.addEventListener('click', () => {
-        let  x = Array.from(document.querySelectorAll('.task'))
-        let y = x.indexOf(event.target)
-        x[y].remove()
-    })
-}
+
+
 
 
