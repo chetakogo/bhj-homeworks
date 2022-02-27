@@ -8,16 +8,18 @@ for (let elem of hasTooltip) {
         event.preventDefault();
 
         event.target.innerHTML += `
-            <div class="tooltip"></div>
+            <div class="tooltip">${event.target.title}</div>
         `;
-
-        let activeTooltip = document.querySelector('.tooltip_active');
-        if (activeTooltip) {
-            activeTooltip.classList.remove('tooltip_active')
-        }
         let tooltip = document.querySelector('.tooltip');
-        tooltip.classList.add('tooltip_active')
-        tooltip.textContent = event.target.title;
+
+
+        if (event.target.title === tooltip.textContent ) {
+            tooltip.classList.toggle('tooltip_active')
+        } else {
+            tooltip.textContent = event.target.title
+            tooltip.classList.add('tooltip_active')
+        }
+
         tooltip.style.top = event.target.getBoundingClientRect().top + 22 + 'px';
         tooltip.style.left = event.target.getBoundingClientRect().left + 0 + 'px';
         tooltip.style.cursor = 'pointer';
@@ -25,7 +27,7 @@ for (let elem of hasTooltip) {
 
 
     })
-    
+
 }
 
 

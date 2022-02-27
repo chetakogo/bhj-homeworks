@@ -34,13 +34,13 @@ function create() {
 
     let rem = document.querySelectorAll('.task__remove')
 
-    for (let elem of rem) {
+let last = rem[rem.length-1]
 
-        elem.addEventListener('click', (event) => {
+        last.addEventListener('click', (event) => {
             event.preventDefault()
             event.target.closest('.task').remove()
         })
-    }
+
 }
 
 
