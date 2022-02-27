@@ -52,7 +52,6 @@ for (let el of button) {
 
             itemCartQuantityElement.textContent = itemCartQuantity + productQuantity;
 
-            productQuantityElement.textContent = '1';
         } else {
 
             baskets.insertAdjacentHTML('beforeend', `
@@ -60,6 +59,8 @@ for (let el of button) {
 <img class="cart__product-image" src="${productImage.src}" >
 <div class="cart__product-count">${Number(currentQuantity.textContent)}</div>
 </div>`)
+
+
         }
 
 

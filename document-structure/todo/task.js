@@ -6,39 +6,33 @@ let button = document.querySelector('.tasks__add')
 
 button.addEventListener('click', (event) => {
     event.preventDefault()
-    create()
-    input.value = ''
+    if (input.value.trim().length !== 0) {
+        create()
+        input.value = ''
+    }
 })
 
+document.addEventListener('keyup', (event) => {
 
-
-
-document.addEventListener('keydown', (e) => {
-
-
-
-    if (input.value.trim().length !== 0 && e.key === 'Enter') {
+    if (input.value.trim().length !== 0 && event.key === 'Enter') {
 
         console.log(input.value)
-        e.preventDefault()
+        event.preventDefault()
         create()
         input.value = ''
     }
 })
 
 
-
-
-
 function create() {
-    list.insertAdjacentHTML('beforeend', '<div class="task"><div class="task__title"></div><a href="#" class="task__remove">&times;</a></div>')
-    let task = list.lastChild
-    let tasks = task.firstChild
-    tasks.insertAdjacentHTML("afterbegin", input.value)
+    list.insertAdjacentHTML('beforeend', `
+<div class="task">
+    <div class="task__title">${input.value.trim()}</div>
+    <a href="#" class="task__remove">&times;</a>
+</div>`)
 
 
     let rem = document.querySelectorAll('.task__remove')
-    console.log(rem)
 
     for (let elem of rem) {
 
