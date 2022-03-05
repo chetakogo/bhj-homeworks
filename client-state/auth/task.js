@@ -1,6 +1,7 @@
 const welcome = document.querySelector('#welcome')
 const userId = document.querySelector('#user_id')
 const signin = document.querySelector('#signin')
+const exit = document.querySelector('#signin__btn__exit')
 
     document.getElementById('signin__form').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -10,17 +11,20 @@ const signin = document.querySelector('#signin')
         let formatedData = JSON.parse(xhr.responseText);
 
         if (xhr.readyState === xhr.DONE && xhr.status == 200) {
+
+            console.log(formatedData)
             if (formatedData.success === true) {
                 localStorage.setItem('id', JSON.stringify(formatedData.user_id));
                 let id = localStorage.getItem('id')
                 signin.classList.remove('signin_active')
                 welcome.classList.add('welcome_active')
                 userId.textContent = formatedData.user_id
-                if (id == formatedData.user_id) {
-                    signin.classList.remove('signin_active')
-                    welcome.classList.add('welcome_active')
-                    userId.textContent = id
-                }
+                
+                // if (id == formatedData.user_id) {
+                //     signin.classList.remove('signin_active')
+                //     welcome.classList.add('welcome_active')
+                //     userId.textContent = id
+                // }
             } else {
                 welcome.classList.add('welcome_active');
                 welcome.textContent = 'Неверный логин/пароль'
@@ -32,4 +36,13 @@ const signin = document.querySelector('#signin')
         const formData = new FormData(document.getElementById('signin__form'))
         xhr.send(formData)
     })
+
+window.addEventListener('load', () => {
+
+    if (localStorage.getItem('id')) {
+        signin.classList.remove('signin_active')
+        welcome.classList.add('welcome_active')
+        userId.textContent = localStorage.getItem('id')
+    }
+})
 

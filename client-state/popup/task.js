@@ -7,6 +7,12 @@ function setCookie(name, value) {
     document.cookie = name + '=' + encodeURIComponent(value)
 }
 
+function getCookie (name) {
+    const pairs = document.cookie.split('; ');
+    const cookie = pairs.find((p) => p.startsWith(name + '='))
+    return cookie.substr(name.length + 1)
+}
+
 
 window.onload = () => {modalWindow.classList.add('modal_active')}
 
@@ -15,8 +21,11 @@ window.onload = () => {modalWindow.classList.add('modal_active')}
         e.preventDefault()
         modalWindow.classList.remove('modal_active')
         setCookie('closed', 'yes')
-        console.log(document.cookie)
     })
 
 
-console.log(document.cookie)
+window.addEventListener('load', () => {
+    if (getCookie('closed')) {
+        modalWindow.classList.remove('modal_active')
+    }
+})
